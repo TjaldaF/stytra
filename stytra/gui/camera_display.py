@@ -15,8 +15,7 @@ from stytra.gui.buttons import IconButton, ToggleIconButton, get_icon
 
 
 class SingleLineROI(pg.LineSegmentROI):
-    """ Subclassing pyqtgraph polyLineROI to remove the "add handle" behavior.
-    """
+    """Subclassing pyqtgraph polyLineROI to remove the "add handle" behavior."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -144,9 +143,9 @@ class CameraViewWidget(QWidget):
     def retrieve_image(self):
         """Update displayed frame while emptying frame source queue. This is done
         through a while loop that takes all available frames at every update.
-        
+
         # TODO fix this somehow?
-        
+
         **Important!** if the input queue is too fast this will produce an
         infinite loop and block the interface!
 
@@ -218,7 +217,7 @@ class CameraSelection(CameraViewWidget):
     """Generic class to overlay on video an ROI that can be
     used to select regions of the image and communicate their position to the
     tracking algorithm (e.g., tail starting point or eyes region).
-    
+
     The changes of parameters read through the ROI position are handled
     via the track_params class, so they must have a corresponding entry in the
     definition of the FrameProcessingMethod of the tracking function of choice.
@@ -352,7 +351,7 @@ class TailTrackingSelection(CameraSelection):
             ]
             # Get tail position and length from the parameters:
             (start_y, start_x), (tail_len_y, tail_len_x) = self.tail_dims()
-            tail_length = np.sqrt(tail_len_x ** 2 + tail_len_y ** 2)
+            tail_length = np.sqrt(tail_len_x**2 + tail_len_y**2)
 
             # Get segment length:
             tail_segment_length = tail_length / (len(angles))
@@ -482,7 +481,7 @@ class EyeTrackingSelection(CameraSelection):
 
                             # Angle and rad of center point from left lower corner:
                             c_th = np.arctan(c_x / c_y)
-                            c_r = np.sqrt(c_x ** 2 + c_y ** 2)
+                            c_r = np.sqrt(c_x**2 + c_y**2)
 
                             # Coords of the center after rotation around left lower
                             # corner, to be corrected when setting position:
@@ -533,7 +532,7 @@ class CameraViewCalib(CameraViewWidget):
         Parameters
         ----------
         calibrator :
-            
+
 
         Returns
         -------
@@ -563,7 +562,7 @@ class CameraViewCalib(CameraViewWidget):
 
 @jit(nopython=True)
 def _tail_points_from_coords(coords, seglen):
-    """ Computes the tail points from a list obtained from a data accumulator
+    """Computes the tail points from a list obtained from a data accumulator
 
     Parameters
     ----------
